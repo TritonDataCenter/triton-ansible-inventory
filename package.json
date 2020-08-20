@@ -1,0 +1,40 @@
+{
+  "name": "triton-ansible-inventory",
+  "version": "1.0.0",
+  "description": "Ansible Inventory plug in for Joyent Triton",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/eslint ./bin/triton-ansible-inventory.js"
+  },
+  "bin": {
+    "triton-ansible-inventory": "./bin/triton-ansible-inventory.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joyent/triton-ansible-inventory.git"
+  },
+  "keywords": [
+    "ansible",
+    "triton",
+    "cloud",
+    "cloudapi"
+  ],
+  "author": "Joyent (joyent.com)",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/joyent/triton-ansible-inventory/issues"
+  },
+  "homepage": "https://github.com/joyent/triton-ansible-inventory#readme",
+  "dependencies": {
+    "bunyan": "^1.8.14",
+    "dashdash": "^1.14.1",
+    "triton": "^7.11.0",
+    "vasync": "^2.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0"
+  }
+}
