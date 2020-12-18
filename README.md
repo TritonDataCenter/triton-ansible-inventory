@@ -36,7 +36,9 @@ to change profiles. If your profile is `env`, then `TRITON_*` or `SDC_*`
 environment variables will be used.
 
 Alternatively, you can have a `.triton` config directory local to your ansible
-directory with a specific profile that you do not wish to change.
+directory with a specific profile that you do not wish to change. The variable
+`ANSIBLE_TRITON_KEY_ID` can be used to override the key specified in the profile
+(e.g., for a repo shared by multiple users were each user has a different key).
 
 [node-triton]: https://github.com/joyent/node-triton
 

@@ -93,6 +93,7 @@ var ansible_inventory = {
 var tritonListMachines = function(c, next) {
     var bastion = {};
     log.debug({this: c});
+    c.keyId = process.env.ANSIBLE_TRITON_KEY_ID || c.keyId;
     triton.createClient({
         log: log,
         configDir: configDir,
