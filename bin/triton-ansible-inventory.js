@@ -5,7 +5,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 /*
- * Copyright 2020, Joyent, Inc.
+ * Copyright 2021, Joyent, Inc.
  */
 
 // Modules
@@ -165,7 +165,7 @@ var tritonListMachines = function(c, next) {
                                 }
                             });
                             groups.forEach(function (g) {
-                                g = g.replace(/-/g,'_');
+                                g = g.replace(/[.-]/g,'_');
                                 if (!Object.prototype.hasOwnProperty.call(ansible_inventory, g)) {
                                     ansible_inventory[g] = {hosts: []};
                                 }
