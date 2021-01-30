@@ -43,12 +43,11 @@ var loadConfig = function loadConfig() {
     var _config = mod_config.loadConfig({
         configDir: configDir
     });
-    var _profile = mod_config.loadProfile({
+    var _profiles = mod_config.loadAllProfiles({
         configDir: configDir,
-        name: _config.profile,
+        log: log
     });
-    // Why, you ask? Hisotry.
-    return [_profile].flat();
+    return _profiles;
 };
 
 var config = loadConfig();
@@ -92,7 +91,11 @@ var ansible_inventory = {
 
 var tritonListMachines = function(c, next) {
     var bastion = {};
-    log.debug({this: c});
+    log.debug({this: c}, 'Current profile');
+    if (c.name == 'env') {
+        log.debug({profile: c}, ('skipping profile env'));
+        return next();
+    }
     c.keyId = process.env.ANSIBLE_TRITON_KEY_ID || c.keyId;
     triton.createClient({
         log: log,
@@ -105,7 +108,7 @@ var tritonListMachines = function(c, next) {
             return;
         }
 
-        log.debug({client: client});
+        log.debug({client: client}, 'Triton client object');
 
         client.cloudapi.listMachines(function handleListMachines(lmerr, insts) {
             var listImgOpts = {
@@ -164,6 +167,7 @@ var tritonListMachines = function(c, next) {
                                     groups.push(t);
                                 }
                             });
+                            groups.push(client.profile.name);
                             groups.forEach(function (g) {
                                 g = g.replace(/[.-]/g,'_');
                                 if (!Object.prototype.hasOwnProperty.call(ansible_inventory, g)) {
