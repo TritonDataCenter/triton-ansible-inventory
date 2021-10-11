@@ -1,4 +1,4 @@
-#! /opt/pkg/bin/node --abort-on-uncaught-exception
+#!/usr/bin/env node
 
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -227,7 +227,7 @@ var tritonListMachines = function(c, next) {
                     inputs: insts
                 }, function (plerr, res) {
                     if (plerr) {
-                        log.error({err: err});
+                        log.error({err: plerr});
                     }
                     log.debug(res);
                     client.close();

@@ -1,6 +1,6 @@
 {
   "name": "triton-ansible-inventory",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Ansible Inventory plug in for Joyent Triton",
   "main": "index.js",
   "directories": {
