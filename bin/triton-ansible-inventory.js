@@ -150,7 +150,8 @@ var tritonListMachines = function(c, next) {
                                     cb ();
                                     return;
                                 }
-                                if (Object.prototype.hasOwnProperty.call(image.tags, 'default_user')) {
+                                if (Object.prototype.hasOwnProperty.call(image, 'tags') &&
+                                    Object.prototype.hasOwnProperty.call(image.tags, 'default_user')) {
                                     ansible_inventory._meta.hostvars[inst.name].ansible_user = image.tags.default_user;
                                 }
                                 groups.push(image.os);
