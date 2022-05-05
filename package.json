@@ -1,7 +1,7 @@
 {
   "name": "triton-ansible-inventory",
-  "version": "1.1.2",
-  "description": "Ansible Inventory plug in for Joyent Triton",
+  "version": "1.1.3",
+  "description": "Ansible Inventory plug in for Triton Data Center",
   "main": "index.js",
   "directories": {
     "example": "examples"
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joyent/triton-ansible-inventory.git"
+    "url": "git+https://github.com/Triton/triton-ansible-inventory.git"
   },
   "keywords": [
     "ansible",
@@ -22,12 +22,12 @@
     "cloud",
     "cloudapi"
   ],
-  "author": "Joyent (joyent.com)",
+  "author": "MNX Cloud (mnx.io)",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/joyent/triton-ansible-inventory/issues"
+    "url": "https://github.com/TritonDataCenter/triton-ansible-inventory/issues"
   },
-  "homepage": "https://github.com/joyent/triton-ansible-inventory#readme",
+  "homepage": "https://github.com/TritonDataCenter/triton-ansible-inventory#readme",
   "dependencies": {
     "bunyan": "^1.8.14",
     "dashdash": "^1.14.1",

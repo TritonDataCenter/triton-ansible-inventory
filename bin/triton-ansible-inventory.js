@@ -6,6 +6,7 @@
 
 /*
  * Copyright 2021, Joyent, Inc.
+ * Copyright 2022, MNX Cloud, Inc.
  */
 
 // Modules
@@ -190,12 +191,13 @@ var tritonListMachines = function(c, next) {
                                 return;
                             } else if (Object.prototype.hasOwnProperty.call(inst.tags, 'tritoncli.ssh.proxy')) {
                                 // Need to get the ProxyJump info
-                                log.debug({inst: inst.name, proxy: inst.tags['tritoncli.ssh.proxy']});
+                                log.debug({inst: inst.name, proxy: inst.tags['tritoncli.ssh.proxy']}, 'Proxy specified');
+                                var proxy_name = inst.tags['tritoncli.ssh.proxy'];
                                 // If we already have it cached use that.
-                                if (bastion['tritoncli.ssh.proxy']) {
-                                    log.debug({proxy: bastion['tritoncli.ssh.proxy']}, 'Use cached IP');
+                                if (bastion[proxy_name]) {
+                                    log.debug({proxy: bastion[proxy_name]}, 'Use cached IP');
                                     ansible_inventory._meta.hostvars[inst.name].ansible_ssh_extra_args =
-                                        '-J ' + jumpUser + bastion['tritoncli.ssh.proxy'];
+                                        '-J ' + jumpUser + bastion[proxy_name];
                                     cb();
                                     return;
                                 } else {
@@ -210,7 +212,7 @@ var tritonListMachines = function(c, next) {
                                                 cb(gmerr);
                                             } else {
                                                 log.debug({proxy: proxy}, 'found proxy');
-                                                bastion['tritoncli.ssh.proxy'] = proxy.primaryIp;
+                                                bastion[proxy.name] = proxy.primaryIp;
                                                 ansible_inventory._meta.hostvars[inst.name].ansible_ssh_extra_args =
                                                     '-J ' + jumpUser + bastion['tritoncli.ssh.proxy'];
                                                 cb();
