@@ -41,9 +41,9 @@ if (fs.existsSync(path.join(process.cwd(), '.triton/config.json'))) {
 }
 
 var loadConfig = function loadConfig() {
-    var _config = mod_config.loadConfig({
-        configDir: configDir
-    });
+    // var _config = mod_config.loadConfig({
+    //     configDir: configDir
+    // });
     var _profiles = mod_config.loadAllProfiles({
         configDir: configDir,
         log: log
@@ -214,7 +214,7 @@ var tritonListMachines = function(c, next) {
                                                 log.debug({proxy: proxy}, 'found proxy');
                                                 bastion[proxy.name] = proxy.primaryIp;
                                                 ansible_inventory._meta.hostvars[inst.name].ansible_ssh_extra_args =
-                                                    '-J ' + jumpUser + bastion['tritoncli.ssh.proxy'];
+                                                    '-J ' + jumpUser + bastion[proxy_name];
                                                 cb();
                                                 return;
                                             }
